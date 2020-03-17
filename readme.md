@@ -1,4 +1,4 @@
-### Coronavirus Tracker 2019 - 2020
+### Coronavirus Tracker API
 
 - This app has been created using the data source as updated by the John Hopkins Whiting School of Engineering, and they are the absolute owner of all the data.
 - Please refer to this repository for the data soure - [URL](https://github.com/CSSEGISandData/COVID-19)
