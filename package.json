@@ -4,6 +4,7 @@
   "description": "Tracks daily developments of coronavirus",
   "main": "index.js",
   "scripts": {
+    "prestart": "npm install",
     "start": "nodemon index",
     "test": "npm run test"
   },
