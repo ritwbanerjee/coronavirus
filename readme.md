@@ -39,3 +39,14 @@ RECOVERED=https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_
 - For getting the total confirmed count, hit `http://localhost:3000/api/confirmed/`
 - For getting the total recovered counts, hit `http://localhost:3000/api/recovered/`
 - For getting the total death counts, hit `http://localhost:3000/api/deaths/`
+
+### Deployments
+
+- This app is already deployed in Heroku.
+- Get Death Counts: `https://my-corona-tracker.herokuapp.com/api/deaths`
+- Get confirmed counts: `https://my-corona-tracker.herokuapp.com/api/confirmed`
+- Get recovered counts: `https://my-corona-tracker.herokuapp.com/api/recovered`
+
+### Buy me a coffee:
+
+- If you wish, you can help me buy a coffee by sending me paypal donation @ ritwbanerjee@gmail.com
