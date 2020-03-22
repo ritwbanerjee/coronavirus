@@ -4,13 +4,27 @@ const getCases = require('../services/getCases');
 
 router.get('/', (req, res) => {
 
-    getCases.getCases(process.env.CONFIRMED).then((response) => {
-        res.send({
+    getCases.getConfirmedCases().then((response) => {
+
+        res.status(200).send({
             status: 200,
-            message: response
+            response: response
         });
     }).catch((error) => {
         res.status(500).send('Something broke!')
+    })
+});
+
+router.get('/:country', (req, res) => {
+
+    getCases.getConfirmedCasesByCountry(req.params.country).then((response) => {
+
+        res.status(200).send({
+            status: 200,
+            response: response
+        });
+    }).catch((error) => {
+        res.status(500).send('Did not find data for the country');
     })
 });
 

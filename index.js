@@ -17,19 +17,19 @@ app.use(helmet());
 app.use(cors({
   origin: process.env.CORS_ORIGIN,
 }));
+
 app.use(express.json());
-
-app.get('/', (req, res) => {
-    res.send({
-        status: 200,
-        message: 'Server is working'
-    })
-});
-
 // Sets up the routes for Recovered, Deaths and confirmed
 app.use('/api/recovered', recovered);
 app.use('/api/deaths', deaths);
 app.use('/api/confirmed', confirmed);
+
+// Init all cron jobs
+const getCases = require('./server/services/getCases');
+getCases.setConfirmedCases();
+getCases.setDeathCases();
+getCases.setRecoveredCases();
+
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
