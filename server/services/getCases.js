@@ -13,9 +13,11 @@ module.exports = {
     // Fetch the cases from Git based on a cronjob.
     setAllCases: function() {
         const allCasesJob = new CronJob('0 */1 * * * *', () => {
-            console.log('CRON -> Get All Cases');
             this.getCases(process.env.CASES_COUNTRY, 4).then((response) => {
                 app.set('allCases', response);
+                console.log('CRON -> Get All Cases -> SUCCESS');
+            }).catch((err) => {
+                console.log('CRON -> Get All Cases -> FAILURE', err);
             });
         }, null, true, 'America/Los_Angeles');
         allCasesJob.start();
@@ -23,9 +25,11 @@ module.exports = {
 
     setConfirmedCases: function() {
         const confirmedCasesJob = new CronJob('0 */1 * * * *', () => {
-            console.log('CRON -> Get Confirmed Cases');
             this.getCases(process.env.CONFIRMED).then((response) => {
                 app.set('confirmed', response);
+                console.log('CRON -> Get Confirmed Cases -> SUCCESS');
+            }).catch((err) => {
+                console.log('CRON -> Get Confirmed Cases -> FAILURE', err);
             });
         }, null, true, 'America/Los_Angeles');
         confirmedCasesJob.start();
@@ -33,9 +37,11 @@ module.exports = {
 
     setRecoveredCases: function() {
         const recoveredCasesJob = new CronJob('0 */1 * * * *', () => {
-            console.log('CRON -> Get Recovered Cases');
             this.getCases(process.env.RECOVERED).then((response) => {
                 app.set('recovered', response);
+                console.log('CRON -> Get Recovered Cases -> SUCCESS');
+            }).catch((err) => {
+                console.log('CRON -> Get Recovered Cases -> FAILURE', err);
             });
         }, null, true, 'America/Los_Angeles');
         recoveredCasesJob.start();
@@ -43,9 +49,11 @@ module.exports = {
 
     setDeathCases: function() {
         const deathCasesJob = new CronJob('0 */1 * * * *', () => {  
-            console.log('CRON -> Get Death Cases');
             this.getCases(process.env.DEATHS).then((response) => {
                 app.set('death', response);
+                console.log('CRON -> Get Death Cases -> SUCCESS');
+            }).catch((err) => {
+                console.log('CRON -> Get Death Cases -> FAILURE', err);
             });
         }, null, true, 'America/Los_Angeles');
         deathCasesJob.start();
