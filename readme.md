@@ -28,17 +28,19 @@ Italy Ministry of Health: http://www.salute.gov.it/nuovocoronavirus
 
 - Once you clone this project, please create a file named `.env` at the root of your project directory.
 
-- Add the 3 links as below:
+- Add the 4 links as below:
 ```
 CONFIRMED=https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv
 DEATHS=https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv
 RECOVERED=https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv
+CASES_COUNTRY=https://raw.githubusercontent.com/CSSEGISandData/COVID-19/web-data/data/cases_country.csv
 ```
 
 - On your terminal run, `npm run start`
 - For getting the total confirmed count, hit `http://localhost:3000/api/confirmed/`
 - For getting the total recovered counts, hit `http://localhost:3000/api/recovered/`
 - For getting the total death counts, hit `http://localhost:3000/api/deaths/`
+- For getting the latest cases, hit `http://localhost:3000/api/confirmed/cases`
 
 ### Deployments
 
@@ -46,3 +48,4 @@ RECOVERED=https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_
 - Get Death Counts: `https://my-corona-tracker.herokuapp.com/api/deaths`
 - Get confirmed counts: `https://my-corona-tracker.herokuapp.com/api/confirmed`
 - Get recovered counts: `https://my-corona-tracker.herokuapp.com/api/recovered`
+- Get latest counts: `https://my-corona-tracker.herokuapp.com/api/confirmed/cases`
