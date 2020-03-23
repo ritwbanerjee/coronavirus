@@ -29,6 +29,7 @@ const getCases = require('./server/services/getCases');
 getCases.setConfirmedCases();
 getCases.setDeathCases();
 getCases.setRecoveredCases();
+getCases.setAllCases();
 
 
 const port = process.env.PORT || 3000;

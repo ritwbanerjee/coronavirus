@@ -7,11 +7,20 @@ const CronJob = require('cron').CronJob;
 const express = require('express');
 const app = express();
 const sortBy = require('lodash/sortBy');
-const size = require('lodash/size');
 const _ = require('lodash');
 module.exports = {
 
     // Fetch the cases from Git based on a cronjob.
+    setAllCases: function() {
+        const allCasesJob = new CronJob('0 */1 * * * *', () => {
+            console.log('CRON -> Get All Cases');
+            this.getCases(process.env.CASES_COUNTRY, 4).then((response) => {
+                app.set('allCases', response);
+            });
+        }, null, true, 'America/Los_Angeles');
+        allCasesJob.start();
+    },
+
     setConfirmedCases: function() {
         const confirmedCasesJob = new CronJob('0 */1 * * * *', () => {
             console.log('CRON -> Get Confirmed Cases');
@@ -43,6 +52,20 @@ module.exports = {
     },
 
     // Get the cases from the app instance
+    getAllCases: function() {
+        return new Promise((resolve, reject) => {
+            if (app.get('allCases') === undefined) {
+                this.getCases(process.env.CASES_COUNTRY, 4).then((cases) => {
+                    resolve(cases);
+                }).catch((error) => {
+                    reject(error);
+                })
+            } else {
+                console.log('Serving All cases from cache');
+                resolve(app.get('allCases'));
+            }
+        });
+    },
 
     getConfirmedCases: function() {
         return new Promise((resolve, reject) => {
@@ -143,27 +166,26 @@ module.exports = {
         });
     },
 
-    getCases: function(url) {
+    getCases: function(url, position) {
 
+        // This is done to comply with the data structure of Hopkins and their live data
+        // 4 -> sort on confirmed cases
+        // 1 -> Sort on the latest entry in the object per country
+        (position === undefined) ? position = 1 : position =  4;
         return new Promise((resolve, reject) => {
-
             // STEP 1: GET THE CSV DATA
             httpService.get(url).then((response) => {
-
                 // STEP 2: GET JSON FROM CSV
                 arr = CSV.parse(response);
                 jsonTransformer.jsonTransformer(arr).then((response) => {
                     const orderedList = sortBy(response, (obj)=> {
-                        return parseInt(obj[(Object.keys(obj)[Object.keys(obj).length -1])]);
+                        return parseInt(obj[(Object.keys(obj)[Object.keys(obj).length - position])]);
                     });
-
                     resolve(orderedList.reverse());
                 })
             }).catch((error) => {
                 reject(error);
             })
         });
-        
     }
-
 }

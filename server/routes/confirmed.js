@@ -15,6 +15,19 @@ router.get('/', (req, res) => {
     })
 });
 
+router.get('/cases', (req, res) => {
+
+    getCases.getAllCases().then((response) => {
+
+        res.status(200).send({
+            status: 200,
+            response: response
+        });
+    }).catch((error) => {
+        res.status(500).send('Did not any data');
+    })
+});
+
 router.get('/:country', (req, res) => {
 
     getCases.getConfirmedCasesByCountry(req.params.country).then((response) => {
