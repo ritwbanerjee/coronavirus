@@ -46,7 +46,3 @@ RECOVERED=https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_
 - Get Death Counts: `https://my-corona-tracker.herokuapp.com/api/deaths`
 - Get confirmed counts: `https://my-corona-tracker.herokuapp.com/api/confirmed`
 - Get recovered counts: `https://my-corona-tracker.herokuapp.com/api/recovered`
-
-### Buy me a coffee:
-
-- If you wish, you can help me buy a coffee by sending me paypal donation @ ritwbanerjee@gmail.com
