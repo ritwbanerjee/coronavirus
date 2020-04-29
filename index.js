@@ -30,7 +30,7 @@ app.use(express.json());
 app.use('/api/recovered', recovered);
 app.use('/api/deaths', deaths);
 app.use('/api/confirmed', confirmed);
-app.use('/api/userModel', require('./server/routes/user'));
+app.use('/api/user', require('./server/routes/user'));
 
 // Init all cron jobs
 const getCases = require('./server/services/getCases');

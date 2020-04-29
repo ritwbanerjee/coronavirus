@@ -2,6 +2,11 @@ const mongoose =  require('mongoose');
 const user = new mongoose.Schema({
     emailId: {
         type: String,
+        required: true,
+        unique: true
+    },
+    role: {
+        type: String,
         required: true
     },
     firstName: {
