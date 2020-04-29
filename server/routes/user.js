@@ -17,10 +17,10 @@ router.post('/create', (req, res) => {
         }, (err, record) => {
             if (err) res.status(500).send(err);
             if (record) {
-                res.status(500).send()
+                res.status(409).send()
             } else {
                 userModel.save().then((response) => {
-                    res.send();
+                    res.status(201).send();
                 }).catch((err) => {
                     res.status(500).send({
                         body: err.message
